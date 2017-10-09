@@ -1,0 +1,97 @@
+---
+host_ip: 10.0.0.2
+
+interfaces:
+  - name: Ethernet1
+    enable: true
+    channel_group:
+      mode: active
+      number: 100
+ - name: Ethernet2
+    enable: true
+    channel_group:
+      mode: active
+      number: 100
+
+vlans:
+  - vlanid: 11
+    name: VLAN11
+    vni: 10011
+  - vlanid: 22
+    name: VLAN22
+    vni: 10022
+  - vlanid: 33
+    name: VLAN33
+    vni: 10022
+
+switchports:
+  - name: PortChannel100
+    mode: trunk
+    trunk_allowed_vlans:
+      - 11
+      - 22
+      - 33
+
+ip_interfaces:
+  - name: Ethernet47
+    address: 10.1.0.2/30
+    mtu: 9214
+  - name: Ethernet48
+    address: 10.1.0.6/30
+    mtu: 9214
+  - name: Loopback1
+    address: 2.2.2.2/32
+
+virtual_mac_addr: 00:1C:73:00:00:01
+
+varp_interfaces:
+  - vlanid: 11
+    enable: true
+    interface_addr: 10.0.11.253/24
+    virtual_addrs:
+      - 10.0.11.254
+  - vlanid: 22
+    enable: true
+    interface_addr: 10.0.22.253/24
+    virtual_addrs:
+      - 10.0.22.254
+  - vlanid: 33
+    enable: true
+    interface_addr: 10.0.33.253/24
+    virtual_addrs:
+      - 10.0.33.254
+
+vxlan:
+  name: Vxlan1
+  enable: true
+  source_interface: Loopback1
+  udp_port: 4789
+
+vteps:
+  - vtep: 1.1.1.1
+
+bgp:
+  bgp_as: 65002
+  enable: true
+  maximum_paths: 4
+  log_neighbor_changes: true
+  neighbors:
+    - name: 10.1.0.1
+      remote_as: 65001
+      send_community: true
+      fall_over_bfd: true
+      enable: true
+    - name: 10.1.0.5
+      remote_as: 65001
+      send_community: true
+      fall_over_bfd: true
+      enable: true
+  networks:
+    - prefix: 10.0.11.0
+      masklen: 24
+    - prefix: 10.0.22.0
+      masklen: 24
+    - prefix: 10.0.33.0
+      masklen: 24
+    - prefix: 2.2.2.2
+      masklen: 32

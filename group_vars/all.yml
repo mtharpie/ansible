@@ -1,0 +1,6 @@
+---
+provider:
+  username: arista
+  password: arista
+  host: {{ host_ip }}
+  transport: eapi
