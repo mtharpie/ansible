@@ -4,3 +4,5 @@ provider:
   password: arista
   transport: eapi
   use_ssl: no
+
+no_log: false
