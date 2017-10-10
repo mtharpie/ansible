@@ -14,6 +14,9 @@ interfaces:
       number: 100
 
 vlans:
+  - vlanid: 1
+    name: VLAN1
+    vni: 10001
   - vlanid: 11
     name: VLAN11
     vni: 10011
@@ -27,6 +30,7 @@ vlans:
 switchports:
   - name: PortChannel100
     mode: trunk
+    trunk_native_vlan: 1
     trunk_allowed_vlans:
       - 11
       - 22
@@ -45,6 +49,11 @@ ip_interfaces:
 virtual_mac_addr: 00:1C:73:00:00:01
 
 varp_interfaces:
+  - vlanid: 1
+    enable: true
+    interface_addr: 10.0.1.253/24
+    virtual_addrs:
+      - 10.0.1.254
   - vlanid: 11
     enable: true
     interface_addr: 10.0.11.253/24
@@ -87,11 +96,5 @@ bgp:
       fall_over_bfd: true
       enable: true
   networks:
-    - prefix: 10.0.11.0
-      masklen: 24
-    - prefix: 10.0.22.0
-      masklen: 24
-    - prefix: 10.0.33.0
-      masklen: 24
     - prefix: 2.2.2.2
       masklen: 32
