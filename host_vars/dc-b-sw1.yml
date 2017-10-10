@@ -7,7 +7,7 @@ interfaces:
     channel_group:
       mode: active
       number: 100
- - name: Ethernet2
+  - name: Ethernet2
     enable: true
     channel_group:
       mode: active

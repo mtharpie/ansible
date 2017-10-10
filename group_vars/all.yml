@@ -2,6 +2,6 @@
 provider:
   username: arista
   password: arista
-  host: {{ host_ip }}
+  host: "{{ host_ip }}"
   transport: eapi
   use_ssl: no
