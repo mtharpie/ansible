@@ -1,5 +1,6 @@
 ---
-host_ip: 10.0.0.1
+provider:
+  host: 10.0.0.1
 
 interfaces:
   - name: Ethernet1
