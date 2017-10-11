@@ -27,7 +27,7 @@ vlans:
     vni: 10022
   - vlanid: 33
     name: VLAN33
-    vni: 10022
+    vni: 10033
 
 switchports:
   - name: Port-Channel100
