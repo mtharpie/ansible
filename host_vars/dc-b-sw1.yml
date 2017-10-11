@@ -2,6 +2,7 @@
 
 hostname: dc-b-sw1
 eos_ip_routing_enable: true
+mgmt_ip: 10.0.1.253
 
 interfaces:
   - name: Ethernet1
@@ -17,16 +18,16 @@ interfaces:
 
 vlans:
   - vlanid: 1
-    name: VLAN1
+    name: VLAN0001
     vni: 10001
   - vlanid: 11
-    name: VLAN11
+    name: VLAN0011
     vni: 10011
   - vlanid: 22
-    name: VLAN22
+    name: VLAN0022
     vni: 10022
   - vlanid: 33
-    name: VLAN33
+    name: VLAN0033
     vni: 10033
 
 switchports:
