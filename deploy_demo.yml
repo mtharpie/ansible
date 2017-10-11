@@ -7,6 +7,7 @@
   gather_facts: no
   connection: local
   roles:
+    - arista.eos-system
     - arista.eos-interfaces
     - arista.eos-bridging
     - arista.eos-ipv4
