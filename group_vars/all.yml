@@ -2,6 +2,7 @@
 provider:
   username: arista
   password: arista
+  host: {{ ansible_host }}
   transport: eapi
   use_ssl: no
   authorize: yes
