@@ -1,5 +1,8 @@
 ---
 
+hostname: dc-a-sw1
+eos_ip_routing_enable: true
+
 interfaces:
   - name: Ethernet1
     enable: true
@@ -94,8 +97,6 @@ bgp:
       send_community: true
       fall_over_bfd: true
       enable: true
-  redistribute:
-    - static
   networks:
     - prefix: 1.1.1.1
       masklen: 32
