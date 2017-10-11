@@ -94,6 +94,8 @@ bgp:
       send_community: true
       fall_over_bfd: true
       enable: true
+  redistribute:
+    - static
   networks:
     - prefix: 1.1.1.1
       masklen: 32
