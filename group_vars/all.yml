@@ -8,3 +8,9 @@ provider:
   authorize: yes
 
 no_log: false
+
+prism_ip: 10.0.1.10
+prism_port: 8080
+prism_username: admin
+prism_password: prism123
+

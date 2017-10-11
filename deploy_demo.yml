@@ -2,10 +2,30 @@
 ## Galaxy Roles Needed
 #  arista.eos-interfaces, arista.eos-bridging, arista.eos-bgp
 #  arista.eos-ipv4, arista.eos-virtual-router, arista.eos-vxlan
+#  arista.eos-system
+
 - name: Provision Arista for Nutanix Demo
   hosts: demo
   gather_facts: no
   connection: local
+  pre_tasks:
+    - name: setup eAPI
+      eos_config:
+        parents: management api http-commands
+        lines:
+          - protocol http
+          - protocol unix-socket
+          - no shutdown
+        provider: "{{ provider }}"
+    
+    - name: setup Acropolis
+      eos_config:
+        parents: acropolistracer
+        lines:
+          - "acropolis ip {{ prism_ip }} port {{ prism_port }} username {{ prism_username }} password {{ prism_password }}"
+          - "Eos host {{ mgmt_ip }} transport unix-socket"
+        provider: "{{ provider }}"
+
   roles:
     - arista.eos-system
     - arista.eos-interfaces
