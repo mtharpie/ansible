@@ -27,7 +27,7 @@ vlans:
     vni: 10022
 
 switchports:
-  - name: PortChannel100
+  - name: Port-Channel100
     mode: trunk
     trunk_native_vlan: 1
     trunk_allowed_vlans:
