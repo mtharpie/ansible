@@ -14,3 +14,4 @@ prism_port: 8080
 prism_username: admin
 prism_password: prism123
 
+eos_image: EOS-4.19.1F.swi

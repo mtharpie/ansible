@@ -17,14 +17,6 @@
           - protocol unix-socket
           - no shutdown
         provider: "{{ provider }}"
-    
-    - name: setup Acropolis
-      eos_config:
-        parents: acropolistracer
-        lines:
-          - "acropolis ip {{ prism_ip }} port {{ prism_port }} username {{ prism_username }} password {{ prism_password }}"
-          - "Eos host {{ mgmt_ip }} transport unix-socket"
-        provider: "{{ provider }}"
 
   roles:
     - arista.eos-system
@@ -34,3 +26,27 @@
     - arista.eos-virtual-router
     - arista.eos-bgp
     - arista.eos-vxlan
+
+  post_tasks:
+    - name: copy Acroplolis rpm to extensions
+      eos_config:
+        lines:
+          - "copy flash:/AcropolisTracer-1.0.0.rpm extension:"
+          - "extension AcropolisTracer-1.0.0.rpm"
+        provider: "{{ provider }}"
+      ignore_errors: yes
+
+    - name: copy installed-extensions to boot-extensions
+      eos_config:
+        lines:
+          - copy installed-extensions boot-extensions
+        provider: "{{ provider }}"
+
+    - name: setup Acropolis
+      eos_config:
+        parents: acropolistracer
+        lines:
+          - "acropolis ip {{ prism_ip }} port {{ prism_port }} username {{ prism_username }} password {{ prism_password }}"
+          - "Eos host {{ mgmt_ip }} transport unix-socket"
+        provider: "{{ provider }}"
+
